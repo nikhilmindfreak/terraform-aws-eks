@@ -71,3 +71,20 @@ module "eks" {
 
   tags = var.common_tags
 }
+
+
+# # edit and add auto scaling policy if required
+
+# resource "aws_autoscaling_policy" "backend" {
+#   name                   = "${var.project_name}-${var.environment}-${var.common_tags.Component}"
+#   policy_type            = "TargetTrackingScaling"
+#   autoscaling_group_name = aws_autoscaling_group.backend.name
+
+#   target_tracking_configuration {
+#     predefined_metric_specification {
+#       predefined_metric_type = "ASGAverageCPUUtilization"  # the metric is cpu utilization
+#     }
+
+#     target_value = 10.0  # we gave 10 to check and generate new instance 
+#   }
+# }

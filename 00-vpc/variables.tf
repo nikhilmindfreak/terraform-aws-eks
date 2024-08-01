@@ -27,5 +27,7 @@ variable "database_subnet_cidrs" {
 }
 
 variable "is_peering_required" {
-  default = true
+  description = "A boolean to indicate if VPC peering is required."
+  type        = bool
+  default     = true
 }
