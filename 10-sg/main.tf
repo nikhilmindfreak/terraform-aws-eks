@@ -1,3 +1,5 @@
+# security groups
+
 module "db" {
   source = "../../terraform-aws-securitygroup"
   project_name = var.project_name
@@ -58,6 +60,8 @@ module "vpn" {
   sg_name = "vpn"
   ingress_rules = var.vpn_sg_rules
 }
+
+# security rules
 
 resource "aws_security_group_rule" "bastion_public" {
   type              = "ingress"
@@ -129,7 +133,7 @@ resource "aws_security_group_rule" "db_node" {
   security_group_id = module.db.sg_id
 }
 
-# Ingress ALB accepting traffic on 443
+# Ingress ALB accepting traffic on 443 
 resource "aws_security_group_rule" "ingress_public_https" {
   type              = "ingress"
   from_port         = 443
@@ -139,7 +143,7 @@ resource "aws_security_group_rule" "ingress_public_https" {
   security_group_id = module.ingress.sg_id
 }
 
-# Ingress ALB accepting traffic on 80
+# Ingress ALB accepting traffic on 80 
 resource "aws_security_group_rule" "ingress_public_http" {
   type              = "ingress"
   from_port         = 80
@@ -149,7 +153,7 @@ resource "aws_security_group_rule" "ingress_public_http" {
   security_group_id = module.ingress.sg_id
 }
 
-#
+# nodes ephermal range to accept traffic form ingress to nodes
 resource "aws_security_group_rule" "node_ingress" {
   type              = "ingress"
   from_port         = 30000
