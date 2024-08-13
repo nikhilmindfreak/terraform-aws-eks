@@ -41,7 +41,10 @@ aws eks update-kubeconfig --region us-east-1 --name <YOUR-CLUSTER-NAME>
 ```
 kubectl get nodes
 ```
-
+* Create Namespace
+```
+kubectl create namesapce <name>
+```
 **RDS**:
 * Connect to RDS using bastion host.
 ```
